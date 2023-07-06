@@ -1,9 +1,10 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector(".formulario") //se cambió por formulario
 
-formulario.onsubmit = function(e) {
+formulario.onsubmit = function(event) { //se cambió a event
 
-  e.prevent();
-  
+
+  event.preventDefault();
+
   var n = formulario.elements[0]
   var e = formulario.elements[1]
   var na = formulario.elements[2]
@@ -13,8 +14,9 @@ formulario.onsubmit = function(e) {
 
   var i = na.selectedIndex
   var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
+  //Se comenta
+  // console.log(nombre, edad)
+  // console.log(nacionalidad)
 
   if (nombre.length === 0) {
     n.classList.add("error")
@@ -29,7 +31,6 @@ if (nombre.length > 0
   agregarInvitado(nombre, edad, nacionalidad)
   }
 }
-
 var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
@@ -55,18 +56,8 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista")
 lista.appendChild(elementoLista)
-
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
-
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
 var inputNombre = document.createElement("input")
@@ -90,8 +81,7 @@ var corteLinea = document.createElement("br")
 elementoLista.appendChild(corteLinea)
 elementoLista.appendChild(botonBorrar);
 
- botonBorrar.onclick = function() {
-// this.parentNode.style.display = 'none';
+botonBorrar.onclick = function() {
 botonBorrar.parentNode.remove()
   }
 }
